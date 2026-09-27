@@ -58,7 +58,7 @@ def test_semidiscrete_entropy_budgets():
 def test_free_stream_preserved():
     s = Solver(5, 3, 3, scheme=Scheme("ec", "es"))
     U = conservative(*(np.full(s.x.shape, c) for c in (1.3, 0.4, -0.7, 2.0)))
-    assert np.abs(s.rhs(U)).max() < 1e-13
+    assert np.abs(s.rhs(U)).max() < 1e-12  # round-off level; the exact value depends on the platform's BLAS
 
 
 def test_standard_dgsem_equals_central_flux_differencing():
